@@ -5,4 +5,12 @@ services:
         volumes:
             - ./statics-server:/usr/src/app
         ports:
-            - 5001:80
+            - 5001:5000
+        links:
+            - db:database
+
+    db:
+        image: postgres
+        restart: always
+        environment: 
+            POSTGRES_PASSWORD: SecureP@ssw0rd
