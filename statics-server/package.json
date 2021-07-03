@@ -15,7 +15,8 @@
     "react-scripts": "4.0.3",
     "serve": "^12.0.0",
     "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "domain-lib": "/usr/src/domain-lib"
   },
   "scripts": {
     "start": "react-scripts start",

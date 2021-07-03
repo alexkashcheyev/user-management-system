@@ -1,23 +1,25 @@
 version: '3'
-services: 
+services:
     statics-server:
         build: ./statics-server
         volumes:
             - ./statics-server:/usr/src/app
         ports:
             - 5001:5000
+        links:
+            - api-server
 
-    db:
+    database:
         image: postgres
         restart: always
         environment: 
             POSTGRES_PASSWORD: SecureP@ssw0rd
 
-    api:
+    api-server:
         build: ./api-server
         volumes:
             - ./api-server:/usr/src/app
         ports:
             - 5002:5000
         links:
-            - db:database
+            - database
