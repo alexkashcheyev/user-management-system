@@ -1,0 +1,8 @@
+version: '3'
+services: 
+    statics-server:
+        build: ./statics-server
+        volumes:
+            - ./statics-server:/usr/src/app
+        ports:
+            - 5001:80
