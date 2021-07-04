@@ -22,13 +22,25 @@ services:
 
     users-db:
         image: postgres
+        volumes:
+            - ./users-db:/var/lib/postgresql/
         restart: always
-        environment: 
-            POSTGRES_PASSWORD: SecureP@ssw0rd
+        environment:
+            POSTGRES_USER: users
+            POSTGRES_PASSWORD: SecurePassw0rd
         ports:
-            - 5003:5432
+            - 5432:5432
         networks:
             - users-network
+
+    users-test:
+        build: ./users-test
+        volumes:
+            - ./users-test:/usr/src/app
+        networks:
+            - users-network
+        depends_on:
+            - users-statics
 
 networks:
     users-network:
