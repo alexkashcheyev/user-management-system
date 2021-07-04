@@ -2,14 +2,14 @@
   "name": "users-api",
   "version": "1.0.0",
   "description": "API server to connect the front end to the DB",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "author": "Alex Kashcheyev",
   "license": "MIT",
   "private": true,
   "scripts": {
     "build": "tsc -p ./tsconfig.json",
-    "start": "node dist/index.js"
+    "start": "node build/index.js"
   },
   "devDependencies": {
     "@types/express": "^4.17.12",
