@@ -1,19 +1,19 @@
 import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize({
-    database: 'users',
-    username: 'users',
-    password: 'SecurePassw0rd',
-    host: 'users-db',
-    dialect: 'postgres',
-    port: 5432,
+// TODO: This is definitely not the way passwords should be kept
+// It should be taken from environment variable in a real-case scenario.
+export const sequelize = new Sequelize('postgres://users:SecurePassw0rd@users-db:5432/users', {
+    retry: {
+        max: 100
+    }
 });
 
 export async function configureDatabase() {
     try {
         await sequelize.authenticate();
-        console.log('authenticated!');
+        await sequelize.sync({force: true});
+        console.log('Database connection works!');
     } catch {
-        console.log(' :( ');
+        process.exit(1);
     }
 }
