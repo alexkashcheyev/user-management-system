@@ -16,7 +16,8 @@ describe('API', () => {
         createUser,
         getUser,
         deleteUser,
-        updateUser
+        updateUser,
+        listUsers
     } = ApiDriver(API_URL_ROOT);
 
     describe('POST /users', () => {
@@ -79,7 +80,6 @@ describe('API', () => {
             const saveUserResponse = await createUser(user);
             const savedId = getIdFromLink(saveUserResponse.headers.location);
             await deleteUser(savedId);
-            console.log('here');
 
             try {
                 await deleteUser(savedId);
@@ -151,5 +151,25 @@ describe('API', () => {
                 expect((error as AxiosError).response?.status).toEqual(401);
             }
         })
+    })
+
+    describe('GET /users', () => {
+        it('should return list of users', async () => {
+            const users = [
+                aRandomUser({}),
+                aRandomUser({}),
+                aRandomUser({})
+            ];
+
+            for (const user of users) {
+                await createUser(user);
+            }
+
+            const listUsersResponse = await listUsers();
+
+            for (const user of users) {
+                expect(listUsersResponse.data).toContainEqual(expect.objectContaining(user));
+            }
+        });
     })
 })
