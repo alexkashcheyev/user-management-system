@@ -5,7 +5,7 @@ services:
         volumes:
             - ./users-statics:/usr/src/app
         ports:
-            - 5001:5000
+            - 3000:3000
         networks:
             - users-network
         depends_on:
@@ -16,7 +16,7 @@ services:
         volumes:
             - ./users-api:/usr/src/app
         ports:
-            - 5002:3000
+            - 5000:5000
         networks:
             - users-network
 

@@ -1,4 +1,5 @@
 import { User } from "../database/model/user";
+import { encryptPassword } from "./encrypt-password";
 
 export async function createUser({
     firstName,
@@ -13,15 +14,11 @@ export async function createUser({
     password: string,
     description?: string
 }) {
-    if (!password || !email) {
-        throw new Error('email and password must be defined')
-    }
-
     const user = User.build({
         firstName,
         lastName,
         email,
-        password,
+        password: encryptPassword(password),
         description
     });
 

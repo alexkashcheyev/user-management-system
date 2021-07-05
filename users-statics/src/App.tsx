@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { AppBar, Container, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { HomeOutlined } from '@material-ui/icons';
+import { UserInfo } from './components/UserInfo/UserInfo';
+import { UserList } from './components/UserList/UserList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React or die
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AppBar position="static">
+        <Toolbar>
+          <Link to="/">
+            <IconButton>
+              <HomeOutlined />
+            </IconButton>
+          </Link>
+          <Typography variant="h6">
+            User management system
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Container maxWidth="lg">
+        <Route path="/user/:id">
+          <UserInfo />
+        </Route>
+        <Route path="/">
+          <UserList />
+        </Route>
+      </Container>
+    </Router>
   );
 }
 

@@ -4,5 +4,5 @@ COPY package.json yarn.lock ./
 RUN yarn
 COPY . ./
 RUN yarn build
-EXPOSE 3000/tcp
+EXPOSE 5000/tcp
 CMD ["yarn", "start"]

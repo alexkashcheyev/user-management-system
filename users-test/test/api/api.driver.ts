@@ -1,6 +1,15 @@
 import axios, { AxiosError } from 'axios';
 import { aRandomUser } from '../util/user-builders';
 
+interface User {
+    id?: number,
+    firstName?: string,
+    lastName?: string,
+    email: string,
+    password: string,
+
+}
+
 export function ApiDriver(apiRoot: string) {
 
     const createUser =

@@ -3,7 +3,7 @@ import { configureDatabase } from './database';
 import { configureMiddleware } from './middleware';
 import { configureRoutes } from './routes';
 
-const port = 3000;
+const port = 5000;
 const app = express();
 
 configureMiddleware(app);
